@@ -1,0 +1,22 @@
+version: "3.1"
+
+services:
+  mongo:
+    restart: "unless-stopped"
+    image: mongo:bionic
+    container_name: "meu-feirante-mongodb"
+    ports:
+      - 21107:27017
+    env_file:
+      - ./mongo.env
+    volumes:
+      - meu-feirante-mongo-data:/data/db
+    networks:
+      - meufeirante
+
+networks:
+  meufeirante:
+    external: true
+
+volumes:
+  meu-feirante-mongo-data: {}
